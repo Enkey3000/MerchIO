@@ -1,0 +1,25 @@
+# Python / MkDocs
+site/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Node / local development
+node_modules/
+dist/
+build/
+.turbo/
+.expo/
+
+# Local data and secrets
+.env
+.env.*
+!.env.example
+*.sqlite
+*.db
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

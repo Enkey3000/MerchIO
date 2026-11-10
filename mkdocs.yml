@@ -1,0 +1,16 @@
+site_name: MerchIO
+site_description: Product, architecture, and delivery documentation for MerchIO
+docs_dir: docs
+site_dir: site
+strict: true
+
+theme:
+  name: mkdocs
+
+nav:
+  - Overview: index.md
+  - Product requirements: prd.md
+  - Architecture: architecture.md
+  - API design: api-design.md
+  - Data model: data-model.md
+  - Roadmap: roadmap.md

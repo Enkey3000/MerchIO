@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>MerchIO Desktop — Test Preview</title>
+<style>
+:root{--navy:#003d81;box-sizing:border-box}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font:14px/1.5 system-ui,sans-serif;background:radial-gradient(900px 500px at 80% 0,#01b4fe44,transparent 60%),linear-gradient(160deg,#00224d,#003d81 60%,#0159ae);color:#fff;display:flex;flex-direction:column;align-items:center;padding:18px 10px calc(24px + env(safe-area-inset-bottom,0px))}
+h1{margin:0;font-size:1.25rem}p{margin:4px 0 12px;opacity:.85;text-align:center;max-width:680px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}.bar button{border:1px solid #ffffff55;background:#ffffff1a;color:#fff;padding:7px 13px;border-radius:9px;font:600 .82rem system-ui;cursor:pointer}.bar button.on{background:#fff;color:var(--navy)}
+.win{width:min(1320px,100%);height:min(84vh,880px);min-height:560px;border-radius:10px;overflow:hidden;background:#fff;color:#111;display:flex;flex-direction:column;box-shadow:0 30px 80px #0009;position:relative}
+.tb{height:34px;display:flex;align-items:center;justify-content:space-between;background:#f3f3f3;border-bottom:1px solid #ddd;padding:0 0 0 10px;flex:none;user-select:none}.ti{display:flex;align-items:center;gap:8px;font-size:12px}.ti b{width:16px;height:16px;border-radius:4px;background:linear-gradient(135deg,#003d81,#01b4fe);display:inline-block;position:relative}.ti b em{position:absolute;top:-4px;right:-5px;background:#e11;color:#fff;border-radius:8px;font:700 9px system-ui;padding:0 4px;font-style:normal}
+.ctl{display:flex;height:100%}.ctl i{width:46px;display:grid;place-items:center;font-style:normal;font-size:12px;color:#333}.ctl i.x:hover{background:#e81123;color:#fff}.tl{display:none;gap:8px}.tl i{width:12px;height:12px;border-radius:50%;display:block}
+.macos .tb{background:#e8e8ea;padding:0 12px;justify-content:flex-start}.macos .ctl{display:none}.macos .tl{display:flex}.macos .ti{position:absolute;left:0;right:0;justify-content:center;pointer-events:none}
+.linux .tb{background:#ebebeb;justify-content:center;position:relative}.linux .ti{margin:auto}.linux .ctl{position:absolute;right:0}.linux .ctl i{width:34px}.linux .ctl i:not(.x){display:none}
+.mb{display:flex;gap:2px;background:#fafafa;border-bottom:1px solid #e3e3e3;padding:0 6px;flex:none;position:relative;z-index:6}.mb>div{position:relative}.mb button{background:none;border:0;padding:5px 10px;font:13px system-ui;cursor:pointer;border-radius:5px}.mb button:hover,.mb .o>button{background:#e5eefb}
+.dd{display:none;position:absolute;top:100%;left:0;min-width:230px;background:#fff;border:1px solid #ccc;border-radius:8px;box-shadow:0 10px 30px #0004;padding:4px;z-index:9}.o .dd{display:block}.dd a{display:flex;justify-content:space-between;gap:20px;padding:6px 12px;border-radius:5px;cursor:pointer;font-size:13px}.dd a:hover{background:#0176d5;color:#fff}.dd a span{opacity:.6}.dd hr{border:0;border-top:1px solid #e5e5e5;margin:4px 0}
+iframe{flex:1;border:0;width:100%;background:#fff}.sbr{height:24px;flex:none;background:#f3f3f3;border-top:1px solid #ddd;display:flex;justify-content:space-between;padding:0 10px;font-size:11px;color:#555;align-items:center}
+#toasts{position:fixed;right:16px;bottom:16px;display:grid;gap:8px;z-index:50}.tn{background:#2b2b2b;color:#fff;border-radius:10px;padding:10px 14px;width:300px;box-shadow:0 10px 30px #000a;cursor:pointer;font-size:13px}.tn small{opacity:.7;display:block}
+.dlg{position:fixed;inset:0;background:#0007;display:none;align-items:center;justify-content:center;z-index:60;padding:14px}.dlg.o{display:flex}.dlg .bx{background:#fff;color:#111;border-radius:12px;padding:16px;width:min(520px,100%)}.dlg textarea,.dlg input{width:100%;font:12px monospace;padding:8px;margin:6px 0;border:1px solid #ccc;border-radius:8px}.dlg button{padding:7px 14px;border-radius:8px;border:1px solid #bbb;background:#f4f4f4;cursor:pointer;margin-left:6px}.dlg button.p{background:#0176d5;color:#fff;border:0}
+small.n{opacity:.7;margin-top:12px;text-align:center;max-width:680px}
+</style></head><body>
+<h1>MerchIO Desktop · Test Preview</h1><p>The real desktop renderer and bridge, running with a simulated Electron shell: native menu, file dialogs, notifications, badge and file-based storage. Edit <code>renderer/</code> in the Electron project, then rebuild this file.</p>
+<div class="bar"><button id="o-windows">Windows</button><button id="o-macos">macOS</button><button id="o-linux">Linux</button><button id="b-rst">Reset demo data</button><button id="b-note">Test notification</button></div>
+<div class="win windows" id="win"><div class="tb"><div class="tl"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div><div class="ti"><b id="bd"></b><span id="ttl">MerchIO</span></div><div class="ctl"><i>─</i><i>▢</i><i class="x">✕</i></div></div>
+<div class="mb" id="mb"></div><iframe id="fr" title="MerchIO app"></iframe><div class="sbr"><span id="st">Data file: merchio-data.json (user profile)</span><span id="pl"></span></div></div>
+<small class="n">Menu accelerators are shown but must be clicked here (browsers reserve Ctrl+N/O). In the real app they work as keyboard shortcuts.</small>
+<div id="toasts"></div><div class="dlg" id="dlg"></div>
+<script>const APP=%%APP%%;</script>
+<script>
+var OS='windows';try{OS=localStorage.getItem('mio-os')||'windows'}catch(e){}
+var cb=null,PATHS={windows:'C:\\Users\\you\\Documents\\',macos:'/Users/you/Documents/',linux:'/home/you/Documents/'};
+var $=function(s){return document.querySelector(s)};
+var MENU=[['File',[['New Record','new','Ctrl+N'],['Import CSV…','import','Ctrl+O'],['Export CSV…','export','Ctrl+E'],0,['Backup…','backup'],['Restore…','restore']]],['Edit',[['Undo'],['Redo'],0,['Cut'],['Copy'],['Paste']]],['View',[['Toggle Dark Mode','theme','Ctrl+D'],0,['Zoom In'],['Zoom Out'],['Full Screen']]],['Go',[['Dashboard','go','Ctrl+1','home'],['Orders','go','Ctrl+2','orders'],['Inventory','go','Ctrl+3','inventory'],['Support Tickets','go','Ctrl+4','tickets'],['Email Marketing','go','Ctrl+5','email'],['Notifications','go','Ctrl+6','notes'],0,['Search…','search','Ctrl+K']]],['Help',[['MerchIO Website'],['About MerchIO','about']]]];
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+$('#mb').innerHTML=MENU.map(function(m,i){return '<div><button data-m="'+i+'">'+m[0]+'</button><div class="dd">'+m[1].map(function(x,j){return x?'<a data-m="'+i+'" data-i="'+j+'">'+x[0]+(x[2]?'<span>'+x[2]+'</span>':'')+'</a>':'<hr>'}).join('')+'</div></div>'}).join('');
+document.addEventListener('click',function(e){var t=e.target,a=t.closest&&t.closest('.dd a'),b=t.closest&&t.closest('.mb button');document.querySelectorAll('.mb .o').forEach(function(x){x.classList.remove('o')});
+ if(b){b.parentNode.classList.add('o');return}
+ if(a){var it=MENU[+a.dataset.m][1][+a.dataset.i];if(it[1]==='about')dlg('<b>MerchIO 1.0.0</b><p>Commerce operations platform.</p>',[['OK']]);else if(it[1]&&cb)cb({cmd:it[1],arg:it[3]})}});
+function toast(t,b){var d=document.createElement('div');d.className='tn';d.innerHTML='<small>MerchIO</small><b>'+esc(t)+'</b><div>'+esc(b||'')+'</div>';d.onclick=function(){d.remove();cb&&cb({cmd:'go',arg:'notes'})};$('#toasts').appendChild(d);setTimeout(function(){d.remove()},5000)}
+function dlg(html,btns){var d=$('#dlg');d.innerHTML='<div class="bx">'+html+'<div style="text-align:right;margin-top:8px">'+btns.map(function(b,i){return '<button data-b="'+i+'" class="'+(b[2]||'')+'">'+b[0]+'</button>'}).join('')+'</div></div>';d.classList.add('o');d.onclick=function(e){var b=e.target.dataset&&e.target.dataset.b;if(b!=null){d.classList.remove('o');btns[+b][1]&&btns[+b][1]()}}}
+window.__desk={platform:OS=='windows'?'win32':OS=='macos'?'darwin':'linux',
+ storeGetSync:function(){try{return localStorage.getItem('merchio-desktop-file')}catch(e){return null}},
+ storeSet:function(v){try{localStorage.setItem('merchio-desktop-file',v)}catch(e){}$('#st').textContent='💾 Saved to merchio-data.json · '+new Date().toLocaleTimeString()},
+ notify:function(t,b){toast(t,b)},
+ setBadge:function(n){var e=$('#bd');e.innerHTML=n?'<em>'+n+'</em>':'';$('#pl').textContent=n?n+' unread':''},
+ saveFile:function(name,content){return new Promise(function(res){dlg('<b>Save file</b><input id="fn" value="'+esc(name)+'"><textarea rows="6" readonly>'+esc(content.slice(0,1500))+'</textarea>',[['Cancel',function(){res(null)}],['Save',function(){var n=$('#fn')?PATHS[OS]+$('#fn').value:name;try{var a=document.createElement('a');a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(content);a.download=name;a.click()}catch(e){}res(n)},'p']])})},
+ openFile:function(){return new Promise(function(res){var i=document.createElement('input');i.type='file';i.accept='.csv,.json,.txt';i.onchange=function(){var f=i.files[0];if(!f)return res(null);var r=new FileReader();r.onload=function(){res(r.result)};r.readAsText(f)};i.oncancel=function(){res(null)};i.click()})},
+ onMenu:function(f){cb=f}};
+function load(){$('#fr').srcdoc=APP}
+function os(x){try{localStorage.setItem('mio-os',x)}catch(e){}OS=x;$('#win').className='win '+x;['windows','macos','linux'].forEach(function(k){$('#o-'+k).className=k==x?'on':''});window.__desk.platform=x=='windows'?'win32':x=='macos'?'darwin':'linux';load()}
+['windows','macos','linux'].forEach(function(k){$('#o-'+k).onclick=function(){os(k)}});
+$('#b-rst').onclick=function(){try{localStorage.removeItem('merchio');localStorage.removeItem('merchio-desktop-file')}catch(e){}load()};
+$('#b-note').onclick=function(){try{var w=$('#fr').contentWindow;w.eval("A.go('orders');A.act('orders',S.orders.find(o=>o.status=='Pending'||o.status=='Processing').id,0)")}catch(e){toast('MerchIO','Test notification')}};
+setInterval(function(){try{$('#ttl').textContent=$('#fr').contentDocument.title||'MerchIO'}catch(e){}},600);
+os(OS);
+</script></body></html>

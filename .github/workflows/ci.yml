@@ -1,0 +1,49 @@
+name: Documentation CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package-and-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Check required package structure
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          required = [
+              ".github/workflows/ci.yml",
+              "docs/index.md",
+              "docs/architecture.md",
+              "docs/api-design.md",
+              "docs/data-model.md",
+              "docs/prd.md",
+              "docs/roadmap.md",
+              "docs/assets/architecture.svg",
+              "docs/assets/data-model.svg",
+              "screenshots/landing-page.png",
+              "screenshots/product-catalog.png",
+              "screenshots/vendor-dashboard.png",
+              "src/frontend",
+              "src/backend plan",
+              "mkdocs.yml",
+              "README.md",
+          ]
+          missing = [item for item in required if not Path(item).exists()]
+          if missing:
+              raise SystemExit("Missing required package paths: " + ", ".join(missing))
+          PY
+      - name: Install MkDocs
+        run: python -m pip install mkdocs
+      - name: Build docs (strict)
+        run: mkdocs build --strict

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Proposed MerchIO logical data model</title>
+  <desc id="desc">Workspace-scoped entities for membership, commerce, support, workflows, marketing, audit, and outbox events, with relationships between their primary records.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2878c8"/>
+    </marker>
+    <style>
+      .bg{fill:#f4f8fd}.box{fill:#fff;stroke:#9cc8f4;stroke-width:2;rx:12}
+      .root{fill:#e9f4ff;stroke:#1674c7;stroke-width:2;rx:12}
+      .title{font:700 25px Arial,sans-serif;fill:#12345a}.h{font:700 16px Arial,sans-serif;fill:#12345a}
+      .t{font:13px Arial,sans-serif;fill:#35516f}.small{font:12px Arial,sans-serif;fill:#536b84}
+      .line{stroke:#2878c8;stroke-width:2;fill:none;marker-end:url(#arrow)}
+      .dash{stroke:#71869b;stroke-width:1.6;stroke-dasharray:5 4;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="760"/>
+  <text class="title" x="42" y="48">MerchIO | Proposed logical data model</text>
+  <text class="small" x="42" y="72">Tenant-scoped logical view; not a deployed schema. Most domain rows carry workspace_id.</text>
+
+  <rect class="root" x="480" y="105" width="230" height="78"/>
+  <text class="h" x="505" y="137">workspaces</text>
+  <text class="t" x="505" y="161">id · name · settings</text>
+
+  <rect class="box" x="70" y="235" width="235" height="105"/>
+  <text class="h" x="92" y="267">users / memberships</text>
+  <text class="t" x="92" y="294">user_id · workspace_id</text>
+  <text class="t" x="92" y="319">role · status</text>
+
+  <rect class="box" x="355" y="235" width="235" height="105"/>
+  <text class="h" x="377" y="267">products</text>
+  <text class="t" x="377" y="294">sku · price · stock</text>
+  <text class="t" x="377" y="319">reorder_point · version</text>
+
+  <rect class="box" x="645" y="235" width="235" height="105"/>
+  <text class="h" x="667" y="267">orders / order_lines</text>
+  <text class="t" x="667" y="294">status · totals · version</text>
+  <text class="t" x="667" y="319">product_id · quantity</text>
+
+  <rect class="box" x="930" y="235" width="235" height="105"/>
+  <text class="h" x="952" y="267">stock_movements</text>
+  <text class="t" x="952" y="294">product_id · delta · reason</text>
+  <text class="t" x="952" y="319">actor · reference · time</text>
+
+  <rect class="box" x="70" y="425" width="235" height="105"/>
+  <text class="h" x="92" y="457">contacts / consents</text>
+  <text class="t" x="92" y="484">purpose · source · status</text>
+  <text class="t" x="92" y="509">suppression / unsubscribe</text>
+
+  <rect class="box" x="355" y="425" width="235" height="105"/>
+  <text class="h" x="377" y="457">campaigns / recipients</text>
+  <text class="t" x="377" y="484">schedule · delivery state</text>
+  <text class="t" x="377" y="509">consent checked at send</text>
+
+  <rect class="box" x="645" y="425" width="235" height="105"/>
+  <text class="h" x="667" y="457">tickets / comments</text>
+  <text class="t" x="667" y="484">priority · assignee · due_at</text>
+  <text class="t" x="667" y="509">status · conversation history</text>
+
+  <rect class="box" x="930" y="425" width="235" height="105"/>
+  <text class="h" x="952" y="457">workflows / runs / steps</text>
+  <text class="t" x="952" y="484">trigger · version · outcome</text>
+  <text class="t" x="952" y="509">idempotency · retry state</text>
+
+  <rect class="box" x="355" y="610" width="235" height="92"/>
+  <text class="h" x="377" y="642">audit_logs</text>
+  <text class="t" x="377" y="670">actor · action · target · time</text>
+
+  <rect class="box" x="645" y="610" width="235" height="92"/>
+  <text class="h" x="667" y="642">outbox_events</text>
+  <text class="t" x="667" y="670">type · payload · delivery state</text>
+
+  <path class="line" d="M525 183 C425 205 210 205 190 235"/>
+  <path class="line" d="M545 183 C510 205 475 210 475 235"/>
+  <path class="line" d="M645 183 C690 205 760 210 760 235"/>
+  <path class="line" d="M590 287 H645"/>
+  <path class="line" d="M880 287 H930"/>
+  <path class="dash" d="M480 183 C385 295 200 330 185 425"/>
+  <path class="dash" d="M510 183 C455 290 470 350 470 425"/>
+  <path class="dash" d="M655 183 C710 290 760 350 760 425"/>
+  <path class="dash" d="M690 183 C840 290 1045 350 1045 425"/>
+  <path class="dash" d="M525 183 C490 380 470 520 470 610"/>
+  <path class="dash" d="M665 183 C700 380 760 520 760 610"/>
+</svg>

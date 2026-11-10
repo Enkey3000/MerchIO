@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>MerchIO Mobile — Test Preview</title>
+<style>
+:root{--ac:#0176d5;--navy:#003d81;box-sizing:border-box}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font:15px/1.5 system-ui,sans-serif;background:radial-gradient(900px 500px at 80% 0,#01b4fe44,transparent 60%),linear-gradient(160deg,#00224d,#003d81 60%,#0159ae);color:#fff;display:flex;flex-direction:column;align-items:center;padding:20px 12px calc(30px + env(safe-area-inset-bottom,0px))}
+h1{margin:0;font-size:1.3rem}p{margin:4px 0 14px;opacity:.85;text-align:center;max-width:560px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}button{border:1px solid #ffffff55;background:#ffffff1a;color:#fff;padding:8px 14px;border-radius:10px;font:600 .85rem system-ui;cursor:pointer}button.on{background:#fff;color:var(--navy)}
+.ph{position:relative;width:390px;height:844px;max-width:100%;border-radius:54px;background:#0a0f1a;padding:12px;box-shadow:0 30px 80px #0008,inset 0 0 0 2px #334}.ph.android{border-radius:34px;padding:10px}
+.scr{position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#fff;display:flex}.android .scr{border-radius:26px}
+#root{display:flex;flex:1;min-width:0}.ph::after{content:'';position:absolute;top:22px;left:50%;transform:translateX(-50%);width:110px;height:30px;border-radius:20px;background:#000;z-index:5}.android::after{width:14px;height:14px;top:20px;border-radius:50%}
+small{opacity:.7;margin-top:14px;text-align:center;max-width:560px}
+</style></head><body>
+<h1>MerchIO Mobile · Test Preview</h1><p>This is the real React Native code running in the browser via react-native-web. Edit the files in the Expo project, then rebuild this file to test changes.</p>
+<div class="bar"><button id="b-ios">iPhone frame</button><button id="b-and">Android frame</button><button id="b-rst">Reset demo data</button></div>
+<div class="ph" id="ph"><div class="scr"><div id="root"></div></div></div>
+<small>Data is stored in this browser’s localStorage (AsyncStorage on a real device). Tip: use the Settings screen for backup, restore and module toggles.</small>
+<script>
+var d='ios';try{d=localStorage.getItem('mio-dev')||'ios'}catch(e){}
+document.getElementById('ph').className='ph'+(d=='android'?' android':'');document.getElementById('b-'+(d=='android'?'and':'ios')).className='on';
+function sd(x){try{localStorage.setItem('mio-dev',x)}catch(e){}location.reload()}
+document.getElementById('b-ios').onclick=function(){sd('ios')};document.getElementById('b-and').onclick=function(){sd('android')};
+document.getElementById('b-rst').onclick=function(){try{localStorage.removeItem('merchio')}catch(e){}location.reload()};
+</script>
+<script>%%BUNDLE%%</script></body></html>

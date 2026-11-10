@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Proposed MerchIO system architecture</title>
+  <desc id="desc">Proposed web, desktop, mobile, and public clients connect through a protected API to shared domain services, PostgreSQL, queues, object storage, and external providers.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2878c8"/>
+    </marker>
+    <style>
+      .bg{fill:#f4f8fd}.box{fill:#fff;stroke:#9cc8f4;stroke-width:2;rx:14}
+      .core{fill:#e9f4ff;stroke:#1674c7;stroke-width:2;rx:14}
+      .provider{fill:#f7f9fc;stroke:#9aaec3;stroke-width:2;rx:14}
+      .title{font:700 26px Arial,sans-serif;fill:#12345a}.h{font:700 17px Arial,sans-serif;fill:#12345a}
+      .t{font:14px Arial,sans-serif;fill:#35516f}.small{font:12px Arial,sans-serif;fill:#536b84}
+      .line{stroke:#2878c8;stroke-width:2;fill:none;marker-end:url(#arrow)}
+      .dash{stroke:#71869b;stroke-width:2;stroke-dasharray:6 5;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="700"/>
+  <text class="title" x="42" y="48">MerchIO | Proposed system architecture</text>
+  <text class="small" x="42" y="72">Target design only — this architecture is not implemented or deployed.</text>
+
+  <rect class="box" x="38" y="115" width="240" height="190"/>
+  <text class="h" x="58" y="145">Client surfaces</text>
+  <text class="t" x="58" y="178">Web application</text>
+  <text class="t" x="58" y="205">Public website / forms</text>
+  <text class="t" x="58" y="232">Electron desktop (V1)</text>
+  <text class="t" x="58" y="259">React Native mobile (V1)</text>
+  <text class="small" x="58" y="285">Offline sync is proposed for V1</text>
+
+  <rect class="core" x="340" y="130" width="205" height="145"/>
+  <text class="h" x="365" y="162">Edge protection</text>
+  <text class="t" x="365" y="193">TLS · WAF · rate limits</text>
+  <text class="t" x="365" y="220">Routing · abuse controls</text>
+  <text class="small" x="365" y="250">Public and authenticated paths</text>
+
+  <rect class="core" x="610" y="110" width="255" height="205"/>
+  <text class="h" x="635" y="142">API + domain</text>
+  <text class="t" x="635" y="174">Auth · tenant context · RBAC</text>
+  <text class="t" x="635" y="201">Inventory · orders · support</text>
+  <text class="t" x="635" y="228">Workflows · consent · billing</text>
+  <text class="t" x="635" y="255">REST / OpenAPI · realtime</text>
+  <text class="small" x="635" y="285">Modular monolith proposed</text>
+
+  <rect class="box" x="935" y="110" width="225" height="140"/>
+  <text class="h" x="957" y="142">PostgreSQL</text>
+  <text class="t" x="957" y="174">Tenant-scoped records</text>
+  <text class="t" x="957" y="201">RLS · stock ledger · audit</text>
+  <text class="small" x="957" y="227">System of record (proposed)</text>
+
+  <rect class="box" x="935" y="300" width="225" height="145"/>
+  <text class="h" x="957" y="332">Redis + workers</text>
+  <text class="t" x="957" y="364">Queues · schedules · retries</text>
+  <text class="t" x="957" y="391">Outbox relay · workflows</text>
+  <text class="small" x="957" y="420">Idempotent async side effects</text>
+
+  <rect class="box" x="610" y="385" width="255" height="100"/>
+  <text class="h" x="635" y="417">Object storage</text>
+  <text class="t" x="635" y="447">Scanned imports · exports · files</text>
+  <text class="small" x="635" y="470">Proposed, access-controlled storage</text>
+
+  <rect class="provider" x="340" y="535" width="820" height="105"/>
+  <text class="h" x="365" y="568">External providers (proposed adapters)</text>
+  <text class="t" x="365" y="598">Stripe billing · email/SMS · OIDC · captcha · shipping · push</text>
+  <text class="small" x="365" y="622">Provider approval, contracts, and security review required before production use</text>
+
+  <path class="line" d="M278 205 H340"/>
+  <path class="line" d="M545 205 H610"/>
+  <path class="line" d="M865 180 H935"/>
+  <path class="line" d="M865 250 C900 250 900 350 935 350"/>
+  <path class="line" d="M740 315 V385"/>
+  <path class="dash" d="M1047 445 V535"/>
+  <path class="dash" d="M740 485 V535"/>
+  <text class="small" x="286" y="190">HTTPS</text>
+  <text class="small" x="870" y="165">SQL / RLS</text>
+</svg>

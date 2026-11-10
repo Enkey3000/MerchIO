@@ -1,0 +1,9 @@
+appId: com.merchio.desktop
+productName: MerchIO
+directories: { output: dist }
+files: [main.js, preload.js, renderer/**, assets/**, package.json]
+mac: { category: public.app-category.business, target: [dmg, zip] }
+win: { target: [nsis] }
+nsis: { oneClick: false, allowToChangeInstallationDirectory: true }
+linux: { target: [AppImage, deb], category: Office }
+# Auto-update: add `electron-updater` and a `publish:` provider here when you have a release host.
